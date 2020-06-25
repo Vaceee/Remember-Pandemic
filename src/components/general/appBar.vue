@@ -36,7 +36,7 @@
             </v-list-item-avatar>
 
             <v-list-item-content v-if="$vuetify.breakpoint.width>500">
-              <v-list-item-title>记录者</v-list-item-title>
+              <v-list-item-title>{{username}}</v-list-item-title>
               <v-list-item-subtitle>我们首先应该善良，其次要诚实，再其次是永远不要相互遗忘。</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -49,12 +49,16 @@
 export default {
   name: 'appBar',
   data: () => ({
+    username: ''
   }),
   props: {
     name: {
       type: String,
       required: true
     }
+  },
+  mounted () {
+    this.username = this.$store.getters.username
   }
 }
 </script>

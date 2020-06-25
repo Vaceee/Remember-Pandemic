@@ -31,14 +31,24 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   axios.get('/login').then(res => {
     let loggedIn = false
+    let userData = {}
     if (res.status === 200) {
       const data = res.data
       if (data.status === 'GET_SUCCESS') {
         loggedIn = true
+        userData = {
+          username: data.usr_name,
+          gender: data.usr_gender,
+          level: data.userlevel,
+          no: data.usr_no
+        }
       }
     }
     if (loggedIn && !store.state.loggedIn) {
-      store.commit('login')
+      store.commit({
+        type: 'login',
+        userData
+      })
     } else if (!loggedIn && store.state.loggedIn) {
       store.commit('logout')
     }

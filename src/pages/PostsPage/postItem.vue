@@ -13,7 +13,7 @@
             </v-card>
           </v-col>
           <v-col class="py-0 pl-0">
-            <v-card class="body-2 pa-2 foota" flat tile>
+            <v-card class="body-2 pa-2 foota author-time-container" flat tile>
               <v-icon dense>mdi-account-circle</v-icon>{{name+' '}}
               <v-icon dense>mdi-clock</v-icon>{{time}}
             </v-card>
@@ -104,5 +104,8 @@ export default {
 }
 .link{
   text-decoration: none;
+}
+.author-time-container {
+  margin-left: 1em;
 }
 </style>

@@ -56,6 +56,8 @@ router.beforeEach((to, from, next) => {
     if (to.name === 'LoginPage' && loggedIn) {
       if (from.name === 'LoginPage' || from.name === null) {
         next({ name: 'HomePage' })
+      } else if (from.name === 'RegisterPage') {
+        next()
       } else {
         next(false)
       }

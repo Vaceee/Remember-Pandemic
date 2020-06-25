@@ -19,8 +19,7 @@
             <v-list-item
               v-for="item in items"
               :key="item.title"
-              link
-              to='/home'
+              @click="redirect(item)"
             >
               <v-list-item-icon>
                 <v-icon>{{item.icon}}</v-icon>
@@ -70,10 +69,29 @@ export default {
       {
         icon: 'mdi-tag',
         title: '标签'
+      },
+      {
+        icon: 'mdi-file-search',
+        title: '搜索'
+      },
+      {
+        icon: 'mdi-logout',
+        title: '退出'
       }
     ],
     hover: false
-  })
+  }),
+  methods: {
+    redirect (item) {
+      if (item.title === '退出') {
+        this.$axios.get('/logout')
+        this.$store.commit('logout')
+        this.$router.go(0)
+      } else if (item.title === '主页') {
+        this.$router.push('home')
+      }
+    }
+  }
 }
 </script>
 

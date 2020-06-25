@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <v-img src="../../../public/wizard-boat.jpg" height="100%">
-    </v-img>
+  <div class="login-bg">
   </div>
 </template>
 
@@ -10,3 +8,13 @@ export default {
   name: 'loginBg'
 }
 </script>
+
+<style scoped>
+.login-bg {
+  background: url(../../../public/wizard-boat.jpg) no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: fixed;
+}
+</style>

@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `bbsdb`.`users` (
   `usr_no` VARCHAR(7) NOT NULL,
   `usr_password` VARCHAR(64) NOT NULL,
   `usr_name` VARCHAR(10) NOT NULL,
-  `usr_grade` CHAR(4) NOT NULL,
+  `usr_grade` CHAR(4) NULL,
   `usr_userlevel` INT NOT NULL DEFAULT 0,
   `usr_enabled` ENUM('Y', 'N') CHARACTER SET 'utf8' NOT NULL DEFAULT 'Y',
   `usr_gender` ENUM('F', 'M') CHARACTER SET 'utf8' NOT NULL DEFAULT 'M',
@@ -292,7 +292,7 @@ BEFORE INSERT ON forbidIP
 FOR EACH ROW
 BEGIN
   DECLARE pri INT;
-  SET pri=(SELECT forbid_Cnt FROM forbidIP WHERE forbid_ip=NEW.forbid_ip);
+  SET pri=(SELECT forbid_loginCnt FROM forbidIP WHERE forbid_ip=NEW.forbid_ip);
   IF pri<10 THEN
     SET NEW.forbid_loginCnt=pri+1;
   ELSE

@@ -23,7 +23,7 @@
         <v-row>
           <v-col cols="12">
             <v-card class="body-2 px-3 maina" color="transparent" flat tile>
-              {{content}}
+              <div v-html="compileMarkDown(content)" class="pt-2"></div>
             </v-card>
           </v-col>
         </v-row>
@@ -49,11 +49,17 @@
 </template>
 
 <script>
+var showdown = require('showdown')
+var converter = new showdown.Converter()
+converter.setOption('tables', true)
 export default {
   name: 'ptitle',
   data: () => ({
   }),
   methods: {
+    compileMarkDown (value) {
+      return converter.makeHtml(value)
+    },
     changeLike: function () {
       this.liked = !this.liked
       if (this.liked) this.likes++

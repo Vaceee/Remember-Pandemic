@@ -3,7 +3,7 @@
     <v-container class="pa-0">
       <div :class="($vuetify.breakpoint.smAndUp)?'mainaaa':'mainbbb'">
         <span class="tagheada">{{section.sec_name}}</span>
-        <span class="right"><v-btn color="#ffb460" tile class="ml-3" @click="writepost">发表帖子</v-btn></span>
+        <span class="right"><v-btn color="primary" tile class="ml-3" @click="writepost">发表帖子</v-btn></span>
         </div>
       <div :class="($vuetify.breakpoint.smAndUp)?'aaa':'bbb'">
         <tagheada

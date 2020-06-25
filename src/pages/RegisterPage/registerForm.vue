@@ -97,7 +97,7 @@ export default {
             const data = res.data
             if (data.status === 'REGISTER_SUCCESS') {
               alert('注册成功！')
-              // this.$router.push('login')
+              this.$router.push('login')
             } else if (data.status === 'NO_REPEAT') {
               alert('账号已被注册！')
             } else if (data.status === 'REGISTER_FAIL') {

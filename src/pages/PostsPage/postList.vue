@@ -3,6 +3,7 @@
     <v-container class="pa-0">
       <div :class="($vuetify.breakpoint.smAndUp)?'mainaaa':'mainbbb'">
         <span class="tagheada">{{section.sec_name}}</span>
+        <span class="right"><v-btn color="#ffb460" tile class="ml-3" @click="writepost">发表帖子</v-btn></span>
         </div>
       <div :class="($vuetify.breakpoint.smAndUp)?'aaa':'bbb'">
         <tagheada
@@ -39,6 +40,7 @@
           />
         </div>
       </div>
+      <page-bar></page-bar>
     </v-container>
   </v-content>
 </template>
@@ -46,12 +48,14 @@
 <script>
 import tagheada from './tag-heada'
 import postItem from './postItem'
+import pageBar from './pagebar'
 
 export default {
   name: 'postList',
   components: {
     postItem,
-    tagheada
+    tagheada,
+    pageBar
   },
   props: ['secId'],
   data () {
@@ -128,6 +132,11 @@ export default {
       ]
     }
   },
+  methods: {
+    writepost () {
+      this.$router.push('/writepost')
+    }
+  },
   mounted () {
     this.$axios.get('/posts/fetch', {
       params: {
@@ -170,5 +179,12 @@ export default {
 }
 .mainaaa{
   width: 70%;
+}
+.right{
+  float:right;
+  color:#5a5ba1;
+  line-height: 5rem;
+  padding-left: 0.5rem;
+  font-size: 2.5rem;
 }
 </style>

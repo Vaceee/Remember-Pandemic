@@ -84,8 +84,8 @@ export default {
   },
   methods: {
     register () {
-      if (!this.usrNo.length || !this.usrPassword.length) {
-        this.login_alert('账号或密码不能为空')
+      if (!this.usrNo.length || !this.usrPassword.length || !this.usrName.length) {
+        alert('账号、密码和用户名不能为空')
       } else {
         this.$axios.post('/register', {
           usr_no: this.usrNo,

@@ -88,7 +88,7 @@ export default {
         this.$store.commit('logout')
         this.$router.go(0)
       } else if (item.title === '主页') {
-        this.$router.push('home')
+        this.$router.push('/home')
       }
     }
   }

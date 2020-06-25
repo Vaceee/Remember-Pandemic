@@ -1,21 +1,40 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="1"></v-col>
+      <v-col cols="2"></v-col>
       <v-col cols="5">
         <navi-card
-          :to="{
-            name: ClassesPage.name
-          }"
+          to="/section/1"
           color="pink"
-          icon="mdi-school"
-          title="课堂信息"
+          icon="mdi-virus"
+          title="疫情通告"
           :small="small"
         />
       </v-col>
       <v-col cols="5">
         <navi-card
-          :to="{name: PostsPage.name}"
+          to="/section/2"
+          color="orange"
+          icon="mdi-book"
+          title="疫情日记"
+          :small="small"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="2"></v-col>
+      <v-col cols="5">
+        <navi-card
+          to="/section/3"
+          color="purple"
+          icon="mdi-city"
+          title="抗疫行动"
+          :small="small"
+        />
+      </v-col>
+      <v-col cols="5">
+        <navi-card
+          :to="{name: ClassesPage.name}"
           color="light-blue"
           icon="mdi-city-variant"
           title="校园讨论"

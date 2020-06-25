@@ -27,7 +27,7 @@
           v-for="at in ats"
           :key="at.id"
           :title="at.title"
-          :content="at.content"
+          :content="`@${username} ` + at.content"
           :name="at.stu_name"
           :time="at.last_time"
           :tags="at.tags"
@@ -82,31 +82,33 @@ export default {
   },
   data: () => ({
     ClassesPage,
+    username: '',
     announcs: [
       {
         PosterId: '12323',
-        title: '魔咒学',
+        title: '欢迎来到记疫',
         Post_Time: 823,
-        last_time: '2019-12-4',
-        content: '下节课每个人带两支羽毛笔'
+        last_time: '2020-3-4',
+        content: '您可以在这里写下有关疫情的一切。'
       },
       {
         PosterId: '12346',
-        title: '天文学',
+        title: '点击任意一个版块以开始',
         Post_Time: 123,
-        last_time: '2019-12-4',
-        content: '记录每天晚上的冬季大三角，将位置变化描在一张图上'
+        last_time: '2020-3-4',
+        content: '校园版块为高校学生提供了更多的平台。'
       }
     ],
     ats: [{
-      stu_name: '隔壁',
+      stu_name: '系统管理员',
       PosterId: '12344',
-      title: '宿舍外面是不是有只猫啊',
+      title: '系统通知',
       Post_Time: 823,
-      last_time: '2019-11-21',
-      content: '@璃梦 知道了'
+      last_time: '2020-6-26',
+      content: '您是第42位加入记疫的用户'
     }],
-    replies: [{
+    replies: [],
+    /* replies: [{
       stu_name: 'ソン·チエンフアン',
       PosterId: '12323',
       title: 'DDDDD',
@@ -114,29 +116,32 @@ export default {
       last_time: '2019-11-19',
       content: '多推就是弟弟吗？什么奇怪的理论',
       tags: [{ tagname: 'ACGN', tagcolor: 'pink' }, { tagname: '不打多个标签不舒服', tagcolor: 'light-green' }]
-    }],
+    }], */
     hottests: [{
-      stu_name: '那三个魂淡',
+      stu_name: 'Floyd',
       PosterId: '12344',
-      title: '笑什么笑让你笑了吗',
+      title: '美国确诊人数已突破200万',
       Post_Time: 823,
-      last_time: '2019-11-20',
-      tags: [{ tagname: '哈哈哈哈哈哈哈哈哈', tagcolor: 'purple' }],
-      section: { secname: '哈哈哈哈哈哈哈', seccolor: 'yellow' }
+      last_time: '2020-6-12',
+      tags: [{ tagname: '世界疫情', tagcolor: 'purple' }],
+      section: { secname: '疫情通告', seccolor: 'pink' }
     },
     {
-      stu_name: 'Bi Lingfan',
+      stu_name: '知乎',
       PosterId: '12223',
-      title: 'Fish!',
+      title: '未来记载新冠病毒的配图',
       Post_Time: 823,
-      last_time: '2019-12-2',
-      tags: [{ tagname: 'travel', tagcolor: 'indigo' },
-        { tagname: 'beautiful things', tagcolor: 'cyan' }],
-      section: { secname: '生活', seccolor: 'green' }
+      last_time: '2020-6-26',
+      tags: [{ tagname: '新冠病毒', tagcolor: 'indigo' },
+        { tagname: '历史', tagcolor: 'cyan' }],
+      section: { secname: '疫情日记', seccolor: 'orange' }
     }
 
     ]
-  })
+  }),
+  mounted () {
+    this.username = this.$store.getters.username
+  }
 }
 </script>
 

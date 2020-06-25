@@ -18,7 +18,7 @@
       </div>
 
       <v-toolbar-title class="white--text display-1">
-        OfCourse
+        记·疫
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -30,7 +30,7 @@
           color="colorful1"
           class="py-0"
         >
-          <v-list-item v-bind:two-line="$vuetify.breakpoint.width>500" >
+          <v-list-item v-bind:two-line="$vuetify.breakpoint.width>500">
             <v-list-item-avatar :class="{'mx-auto':($vuetify.breakpoint.width<=500)}">
               <img src="../../../public/Nona1.png">
             </v-list-item-avatar>
@@ -62,3 +62,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.userbar{
+  width:480px;
+  height: 70px;
+  margin: 1px;
+}
+</style>

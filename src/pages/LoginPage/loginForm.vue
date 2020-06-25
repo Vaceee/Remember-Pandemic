@@ -81,7 +81,16 @@ export default {
           if (res.status === 200) {
             const data = res.data
             if (data.status === 'GET_SUCCESS') {
-              this.$store.commit('login')
+              const userData = {
+                username: data.usr_name,
+                gender: data.usr_gender,
+                level: data.userlevel,
+                no: data.usr_no
+              }
+              this.$store.commit({
+                type: 'login',
+                userData
+              })
               this.$router.push('home')
             } else if (data.status === 'NAME_PASSWORD_WRONG') {
               this.login_alert('用户名或密码错误！')

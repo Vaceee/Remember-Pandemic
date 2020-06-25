@@ -112,3 +112,24 @@ def forbidIPUpdate(forbid_ip, forbid_time):
         '''
     DR = db_result.DbResult(record_name, baseSelect(sql2,(forbid_ip,)))
     return DR
+
+
+#新用户注册，插入users表
+def Register(no, name, password, gender, register_time):
+    record_name = ('usr_no')
+    pre_sql='''
+        SELECT usr_no FROM users
+        WHERE usr_no = %s
+    '''
+    DR=db_result.DbResult(record_name, baseSelect(pre_sql, (no,)))
+    if DR.size()!=0:
+        return "REPEAT"
+
+    sql='''
+        INSERT INTO users(usr_no, usr_password, usr_name, usr_gender)
+        VALUES (%s, %s, %s, %s)
+    '''
+    baseSelect(sql,(no, password, name, gender))
+
+    DR=db_result.DbResult(record_name, baseSelect(pre_sql, (no,)))
+    return DR

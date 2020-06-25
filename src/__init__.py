@@ -5,10 +5,11 @@ from flask_cors import CORS
 app = Flask(__name__, static_folder="static",static_url_path="/static")
 
 from .routes import (
-    login, logout, messages, notices, posts, replies, sections, profile, image, search
+    login, logout, register, messages, notices, posts, replies, sections, profile, image, search
 )
 app.register_blueprint(login.loginBp)
 app.register_blueprint(logout.logoutBp)
+app.register_blueprint(register.registerBp)
 app.register_blueprint(messages.msgBp)
 app.register_blueprint(notices.ntcBp)
 app.register_blueprint(posts.postsBp)

@@ -1,5 +1,6 @@
 <template>
-  <v-content class="bgrr">
+<div class="home-bg">
+  <v-content>
     <v-card flat color="transparent">
       <v-row v-if="$vuetify.breakpoint.smAndUp">
         <v-col class="py-0 bgr0r">
@@ -26,6 +27,7 @@
       </div>
     </v-card>
   </v-content>
+</div>
 </template>
 
 <script>
@@ -48,13 +50,11 @@ export default {
 .vertical{
   margin-top: 15%;
 }
-.bgr{
-  position: fixed;
-}
-.bgrr{
-  margin:0px;
-  background-image:url("../../../public/november.jpg");
+.home-bg{
+  background: url("../../../public/november.jpg");
+  height: 100%;
+  width: 100%;
   background-size: cover;
-  background-attachment:fixed;
+  position: fixed;
 }
 </style>

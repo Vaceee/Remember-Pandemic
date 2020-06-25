@@ -10,7 +10,7 @@
           :tags="section.selectedtags" :name="section.sec_name" :hottags="section.hottags"
         ></tagheada>
         <div class="bodyy">
-          <span class="pl-2">最新通知：</span>
+          <span class="pl-2">热门帖子：</span>
           <post-item
             v-for="hotpost in hotposts"
             :key="hotpost.id"
@@ -66,8 +66,8 @@ export default {
           { tagname: '干货必读', tagcolor: 'pink' }
         ],
         hottags: [
-          { tagname: '复方汤剂', tagcolor: 'orange', hotness: 9 },
-          { tagname: '福灵剂', tagcolor: 'blue', hotness: 7 }
+          { tagname: '世界疫情', tagcolor: 'orange', hotness: 9 },
+          { tagname: '科普辟谣', tagcolor: 'blue', hotness: 7 }
         ]
       },
       hotposts: [
@@ -119,15 +119,6 @@ export default {
           Post_Time: 823,
           last_time: ' 2019-05-24',
           content: '行高：1.5（font:12px/1.5 Arial;）行高：1.5（font:12px/1.5 Arial;）……'
-        },
-        {
-          stu_name: 'ソン·チエンフアン',
-          PosterId: '12323',
-          title: 'DDDDD',
-          Post_Time: 823,
-          last_time: '2019-11-19',
-          content: '多推就是弟弟吗？什么奇怪的理论',
-          tags: [{ tagname: 'ACGN', tagcolor: 'pink' }, { tagname: '不打多个标签不舒服', tagcolor: 'light-green' }]
         }
       ]
     }
@@ -147,9 +138,22 @@ export default {
     }).then(response => {
       var data = response.data
       this.posts = data.posts
-    }).catch(_ => {
-      // alert(e)// 不知道怎么办，它不让用console啊
+    }).catch(e => {
+      alert(e)
     })
+    this.$axios.get('/sections/fetch')
+      .then(response => {
+        var sections = response.data.sections
+        for (let sec in sections) {
+          sec = Object(sec)
+          // alert(sec.id) // TODO 不知道为什么读不到sections的内容
+          if (Number(sec.id) === Number(this.$route.params.secId)) {
+            this.section.sec_name = sec.name
+          }
+        }
+      }).catch(e => {
+        alert(e)
+      })
   }
 }
 </script>

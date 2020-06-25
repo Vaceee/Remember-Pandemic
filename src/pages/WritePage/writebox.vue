@@ -87,7 +87,7 @@
           <v-icon>mdi-keyboard-return</v-icon>
         </v-btn>
       </v-btn-toggle>
-        <v-btn color="primary" tile class="ml-3">提交</v-btn>
+        <v-btn color="primary" tile class="ml-3">发表</v-btn>
       </v-toolbar>
       <v-textarea v-model="userText" placeholder="欢迎使用OfCourse! markdown文本编辑器" auto-grow></v-textarea>
     </v-card>

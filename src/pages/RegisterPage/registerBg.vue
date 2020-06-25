@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-img src="../../../public/wizard-boat.jpg" height="100%">
+    <v-img src="../../../public/wuhan.jpg" height="100%">
     </v-img>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'loginBg'
+  name: 'registerBg'
 }
 </script>

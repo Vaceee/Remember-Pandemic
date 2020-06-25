@@ -9,12 +9,14 @@ import HomeRoute from './HomeRoute'
 import PostsRoute from './PostsRoute'
 import PostRoute from './PostRoute'
 import WriteRoute from './WriteRoute'
+import RegisterRoute from './RegisterRoute'
 
 Vue.use(VueRouter)
 
 const routes = [
   NotFoundRoute,
   LoginRoute,
+  RegisterRoute,
   HomeRoute,
   PostsRoute,
   PostRoute,
@@ -48,7 +50,9 @@ router.beforeEach((to, from, next) => {
         next(false)
       }
     } else if (to.name !== 'LoginPage' && !loggedIn) {
-      if (from.name !== 'LoginPage') {
+      if (to.name === 'RegisterPage') {
+        next()
+      } else if (from.name !== 'LoginPage') {
         next({ name: 'LoginPage' })
       } else {
         next(false)

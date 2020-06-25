@@ -12,7 +12,7 @@
               class="px-6 pb-6"
             >
               <v-card-title class="d-flex headline px-0 pt-2" color="primary"><!--justify-center-->
-                <span>用户登录</span>
+                <span>用户注册</span>
               </v-card-title>
               <v-text-field
                 v-model="usrNo"
@@ -31,21 +31,33 @@
                 autocomplete="false"
                 @keyup.enter="try_login"
               ></v-text-field>
+              <v-text-field
+                v-model="usrName"
+                label="用户名"
+                required
+                clearable
+                autocomplete="false"
+              ></v-text-field>
+              <div class="checkboxlist">
+              <input type="checkbox" class="checkbox" v-model="usrSex" value="M">男
+              <input type="checkbox" class="checkbox" v-model="usrSex" value="F">女
+              </div>
 
               <div class="buttons">
-                <v-btn
-                  color="accent"
-                  class="mr-4"
-                  @click="try_login"
-                >登陆</v-btn>
-                <router-link class="link" to="/register">
+                <router-link class="link" to="/login">
                 <v-btn
                   color="primary"
                   class="mr-4"
-                >注册</v-btn>
+                >登陆</v-btn>
                 </router-link>
+                <v-btn
+                  color="accent"
+                  class="mr-4"
+                  @click="register"
+                >注册</v-btn>
               </div>
             </v-form>
+
           </v-col>
         </v-row>
       </v-container>
@@ -56,12 +68,13 @@
 <script>
 import hash from 'sha.js'
 export default {
-  name: 'LoginForm',
+  name: 'RegisterForm',
   data () {
     return {
       usrNo: '',
       usrPassword: '',
-      registerAlert: false
+      usrName: '',
+      usrSex: []
     }
   },
   computed: {
@@ -70,36 +83,35 @@ export default {
     }
   },
   methods: {
-    try_login () {
+    register () {
       if (!this.usrNo.length || !this.usrPassword.length) {
-        this.login_alert('用户名或密码不能为空')
+        this.login_alert('账号或密码不能为空')
       } else {
-        this.$axios.post('/login', {
+        this.$axios.post('/register', {
           usr_no: this.usrNo,
-          usr_password: this.passwdHash
+          usr_password: this.passwdHash,
+          usr_name: this.usrName,
+          usr_gender: this.usrSex[0]
         }).then(res => {
           if (res.status === 200) {
             const data = res.data
-            if (data.status === 'GET_SUCCESS') {
-              this.$store.commit('login')
-              this.$router.push('home')
-            } else if (data.status === 'NAME_PASSWORD_WRONG') {
-              this.login_alert('用户名或密码错误！')
-            } else if (data.status === 'LOGINOUT_UNKNOWN') {
-              this.login_alert('出错了！')
+            if (data.status === 'REGISTER_SUCCESS') {
+              alert('注册成功！')
+              // this.$router.push('login')
+            } else if (data.status === 'NO_REPEAT') {
+              alert('账号已被注册！')
+            } else if (data.status === 'REGISTER_FAIL') {
+              alert('出错了！')
             } else {
-              this.login_alert('Unknown error occured')
+              alert('Unknown error occured')
             }
           } else {
-            this.login_alert('Connection failed.\nPlease check your network condition.')
+            alert('Connection failed.\nPlease check your network condition.')
           }
         }).catch(e => {
-          this.login_alert(e)
+          alert(e)
         })
       }
-    },
-    login_alert (msg) {
-      alert(msg)
     }
   }
 }

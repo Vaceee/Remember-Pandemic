@@ -1,10 +1,12 @@
 <template>
+  <v-content>
   <div class="bodyy">
     <v-tabs
       fixed-tabs
       background-color="primary"
       dark
       v-model="tab"
+      class="tab"
     >
       <v-tab>公告</v-tab>
       <v-tab>@提到我的</v-tab>
@@ -43,12 +45,14 @@
         />
       </v-tab-item>
     </v-tabs>
-
+  </div>
+  <div class="bodyy">
     <v-tabs
       fixed-tabs
-      background-color="colorful1"
+      background-color="#9970db"
       dark
       v-model="tab"
+      class="tab"
     >
       <v-tab>讨论热门</v-tab>
       <v-tab-item :key="1">
@@ -65,6 +69,7 @@
       </v-tab-item>
     </v-tabs>
   </div>
+  </v-content>
 </template>
 
 <script>
@@ -139,5 +144,10 @@ export default {
 .bodyy{
   font-size: 1.2rem;
   background-color: #f9fafd;
+  margin: 10px;
+  border-radius: 7px 7px 0 0;
+}
+.tab{
+  border-radius: 6px 6px 0 0;
 }
 </style>

@@ -51,7 +51,7 @@ export default {
   margin-top: 15%;
 }
 .home-bg{
-  background: url("../../../public/november.jpg");
+  background: url("../../../public/wizard-city.jpg");
   height: 100%;
   width: 100%;
   background-size: cover;

@@ -1,6 +1,10 @@
 <template>
   <v-content>
     <div class="cont1">
+    <br>
+    <v-card class="title">
+      <v-textarea v-model="title" placeholder=" 请输入标题" auto-grow></v-textarea>
+    </v-card>
     <v-card class="mx-auto mt-4" v-if="($vuetify.breakpoint.smAndUp)">
       <v-toolbar dense elevation="2">
       <v-btn-toggle
@@ -87,9 +91,9 @@
           <v-icon>mdi-keyboard-return</v-icon>
         </v-btn>
       </v-btn-toggle>
-        <v-btn color="primary" tile class="ml-3">发表</v-btn>
+        <v-btn color="primary" tile class="ml-3" @click="sendpost">发表</v-btn>
       </v-toolbar>
-      <v-textarea v-model="userText" placeholder="欢迎使用OfCourse! markdown文本编辑器" auto-grow></v-textarea>
+      <v-textarea v-model="userText" placeholder=" 欢迎使用markdown文本编辑器，请输入帖子内容" auto-grow></v-textarea>
     </v-card>
 
     <v-card class="mx-auto mt-4" v-else>
@@ -115,7 +119,7 @@
           <v-icon>mdi-code-tags</v-icon>
         </v-btn>
       </v-btn-toggle>
-        <v-btn color="primary" tile class="ml-3">提交</v-btn>
+        <v-btn color="primary" tile class="ml-3" @click="sendpost">发表</v-btn>
       </v-toolbar>
 
       <v-toolbar dense elevation="1">
@@ -180,7 +184,7 @@
         </v-btn>
       </v-btn-toggle>
       </v-toolbar>
-      <v-textarea v-model="userText" placeholder="欢迎使用OfCourse! markdown文本编辑器" auto-grow></v-textarea>
+      <v-textarea v-model="userText" placeholder=" 欢迎使用markdown文本编辑器，请输入帖子内容" auto-grow></v-textarea>
     </v-card>
     <div v-html="compileMarkDown(userText)" class="pt-2"></div>
     </div>
@@ -193,8 +197,12 @@ var converter = new showdown.Converter()
 converter.setOption('tables', true)
 export default {
   name: 'writebox',
-  data: () => ({
-  }),
+  data () {
+    return {
+      title: '',
+      userText: ''
+    }
+  },
   methods: {
     compileMarkDown (value) {
       return converter.makeHtml(value)
@@ -216,15 +224,15 @@ export default {
     },
     ulist () {
       this.userText +=
-`* 第一项
-* 第二项
-* 第三项`
+        `* 第一项
+        * 第二项
+        * 第三项`
     },
     olist () {
       this.userText +=
-`1. 第一项
-2. 第二项
-3. 第三项`
+        `1. 第一项
+        2. 第二项
+        3. 第三项`
     },
     image () {
       this.userText += '![图片alt](图片地址)'
@@ -237,10 +245,10 @@ export default {
     },
     table () {
       this.userText +=
-`|  表头   | 表头  |
-|  ----  | ----  |
-| 单元格  | 单元格 |
-| 单元格  | 单元格 |`
+        `|  表头   | 表头  |
+        |  ----  | ----  |
+        | 单元格  | 单元格 |
+        | 单元格  | 单元格 |`
     },
     returnc () {
       this.userText += `
@@ -250,10 +258,34 @@ export default {
     heading (n) {
       for (let i = 0; i < n; i++) this.userText += '#'
       this.userText += n + '级标题'
+    },
+    sendpost () {
+      if (!this.title.length) {
+        alert('标题不能为空')
+      } else {
+        this.$axios.post('/posts/new', {
+          title: this.title,
+          content: this.userText,
+          bas_id: 1 // TODO
+        }).then(res => {
+          if (res.status === 200) {
+            const data = res.data
+            if (data.status === 'POST_SUCCESS') {
+              alert('发表成功！')
+              this.$router.go(-1)
+            } else if (data.status === 'POST_UNKNOWN') {
+              alert('出错了！')
+            } else {
+              alert('Unknown error occured')
+            }
+          } else {
+            alert('Connection failed.\nPlease check your network condition.')
+          }
+        }).catch(e => {
+          alert(e)
+        })
+      }
     }
-  },
-  props: {
-    userText: String
   }
 }
 </script>
@@ -266,5 +298,8 @@ export default {
 .cont1{
   width:80%;
   margin: 0 auto;
+}
+.title{
+  height: 50px;
 }
 </style>

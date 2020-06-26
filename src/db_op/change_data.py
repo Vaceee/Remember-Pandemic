@@ -42,6 +42,23 @@ def postInsert(usr_id,post_title,post_content,post_time,post_lastRepTime,bas_id,
     return DR
 
 
+def postCntIncrease(bas_id):
+    record_name = ("bas_postsCnt")
+    sql1 = '''
+            UPDATE base
+            SET bas_postsCnt = bas_postsCnt + 1
+            WHERE id = %s
+        '''
+    baseSelect(sql1, (bas_id,))
+
+    sql2 = '''
+            SELECT bas_postsCnt
+            FROM base
+            WHERE id = %s
+        '''
+    DR = db_result.DbResult(record_name, baseSelect(sql2, (bas_id,)))
+    return DR
+
 
 # 更改posts的content或者title并返回该项（未检查）
 #------------------------------------------------------------------

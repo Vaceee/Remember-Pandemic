@@ -42,6 +42,7 @@ def postDeliver(**checkrst):
         bas_id = int(data['bas_id'])
         post_time = lastRepTime = datetime.datetime.now().replace(microsecond=0)  #发帖时间
         result = dc.postInsert(usr_id, title, content, post_time, lastRepTime, bas_id, quote_from)  #插入数据库
+        dc.postCntIncrease(bas_id) #增加对应版块回帖数
         if result.size() == 1:
             return jsonify({'status': POST_SUCCESS})
         else:

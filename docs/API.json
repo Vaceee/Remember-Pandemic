@@ -154,7 +154,7 @@
     "path": "/posts/new",
     "method": "POST",
     "parameters": {
-      "sec_id": "int",
+      "bas_id": "int",
       "title": "str",
       "content": "str"
     },

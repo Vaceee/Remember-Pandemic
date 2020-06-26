@@ -59,18 +59,27 @@ converter.setOption('tables', true)
 export default {
   name: 'storey',
   data: () => ({
+    liked: false
   }),
   methods: {
     compileMarkDown (value) {
       return converter.makeHtml(value)
     },
     changeLike: function () {
+      this.$axios.post('/replies/like', {
+        method: this.liked ? 'cancle' : 'like',
+        rep_id: this.id
+      })
       this.liked = !this.liked
       if (this.liked) this.likes++
       else this.likes--
     }
   },
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -93,10 +102,6 @@ export default {
     },
     likes: {
       type: Number,
-      required: true
-    },
-    liked: {
-      type: Boolean,
       required: true
     },
     image: {

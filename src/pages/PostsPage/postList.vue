@@ -82,8 +82,8 @@ export default {
           last_time: '2020-6-12',
           tags: [{ tagname: '世界疫情', tagcolor: 'purple' }],
           section: { secname: '疫情通告', seccolor: 'pink' },
-          rep_cnt: 10,
-          click_cnt: 81
+          rep_cnt: 8,
+          click_cnt: 133
         },
         {
           stu_name: '知乎',
@@ -96,7 +96,7 @@ export default {
             { tagname: '历史', tagcolor: 'cyan' }],
           section: { secname: '疫情日记', seccolor: 'orange' },
           rep_cnt: 12,
-          click_cnt: 105
+          click_cnt: 96
         }
       ],
       posts: []

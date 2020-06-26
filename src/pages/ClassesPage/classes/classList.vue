@@ -30,32 +30,50 @@ export default {
     return {
       claases: [
         {
-          name: '魔药学',
-          id: '1',
-          teacher: '苏丝',
-          time: '周四5-8节',
+          name: '线上学习',
+          id: '4',
+          teacher: '',
+          time: '教学',
           hotposts: [
-            { title: '谁能买到波多莫草吗？', color: 'red' },
-            { title: '变色药水的配方公式，速进', color: 'indigo' },
-            { title: '关于我为什么被苏丝关了禁闭', color: 'lime' }
+            { title: '对于线上网课，你有哪些技巧分享？', color: 'red' },
+            { title: '期末的论文和大作业太多了吧', color: 'indigo' }
           ]
         },
         {
-          name: '魔法史',
-          id: '2',
+          name: '时间管理',
+          id: '5',
           teacher: '艾特伟',
           hotposts: [
-            { title: '关于仙界大战的小组课后作业', color: 'orange' }
+            { title: '大家在家都如何保持自主性呢', color: 'orange' }
           ]
         },
         {
-          name: '变形术',
-          id: '3',
+          name: '校园生活',
+          id: '6',
+          teacher: '艾特伟',
+          hotposts: [
+            { title: '想念西苑大排档的烤鱼了', color: 'green' },
+            { title: '还来不及和老师同学认真告别，就匆匆毕业了', color: 'purple' }
+          ]
+        },
+        {
+          name: '畅所欲言',
+          id: '7',
           teacher: '斐戎',
           time: '周一3-4节 周三5-6节',
           hotposts: [
-            { title: '莉迪亚真的是人间宝藏', color: 'teal' },
-            { title: '关于那只黑白鸟的50个小秘密', color: 'pink' }
+            { title: '疫情期间，你还会跟室友经常交流吗？', color: 'teal' },
+            { title: '异地恋的同学是怎样度过疫情的？', color: 'pink' }
+          ]
+        },
+        {
+          name: '兴趣交流',
+          id: '8',
+          teacher: '斐戎',
+          time: '周一3-4节 周三5-6节',
+          hotposts: [
+            { title: '分享我在疫情期间的新爱好', color: 'teal' },
+            { title: '有对数据挖掘感兴趣的同学吗', color: 'pink' }
           ]
         }
 

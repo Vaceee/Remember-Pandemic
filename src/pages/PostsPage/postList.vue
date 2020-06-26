@@ -99,27 +99,7 @@ export default {
           click_cnt: 105
         }
       ],
-      posts: [
-        {
-          stu_name: 'Bi Lingfan',
-          PosterId: '12223',
-          title: 'Fish!',
-          Post_Time: 823,
-          last_time: '2019-12-2',
-          content: 'There are lots of fish swimming in our new Aipen pool! I guess these are colorful koi\'s.',
-          tags: [{ tagname: 'travel', tagcolor: 'indigo' },
-            { tagname: 'beautiful things', tagcolor: 'cyan' }]
-        },
-        {
-          stu_name: '管理员',
-          PosterId: '12323',
-          title: '关于颜色',
-          Post_Time: 823,
-          last_time: '2019-12-4',
-          content: '在所有的色彩中，毫无疑问，蓝色是UI设计中最重要的颜色，也是使用范围最广的色彩。蓝色是冷色系中唯一的原色……',
-          tags: [{ tagname: '管理员发布', tagcolor: 'orange' }]
-        }
-      ]
+      posts: []
     }
   },
   methods: {

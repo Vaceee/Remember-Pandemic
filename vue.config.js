@@ -5,7 +5,8 @@ module.exports = {
   devServer: {
     allowedHosts: [
       'localhost',
-      'local.host'
+      'local.host',
+      'ofcourse.huangduligong.com'
     ]
   }
 }

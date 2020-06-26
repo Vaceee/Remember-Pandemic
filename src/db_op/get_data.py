@@ -116,14 +116,11 @@ def selectRepRep(rep_id, offset, limit):
 #------------------------------------------------------------------
 def getSectionInfo() :
 
-    record_name = ("id","name","count", "comment", "forbidden", "star", "no")
+    record_name = ("id","name","count", "comment", "forbidden", "star")
     sql = '''
             SELECT bas.id, bas.bas_name, bas.bas_postsCnt, bas.bas_comment,
-                bas.bas_forbidden, bas.bas_star, sec.sec_no
+                bas.bas_forbidden, bas.bas_star
             FROM base AS bas
-            LEFT JOIN sections AS sec
-            ON sec.bas_id = bas.id
-            WHERE bas.bas_clsec = 'S'
         '''
     sectionTuple = baseSelect(sql,())
     DR = db_result.DbResult(record_name,sectionTuple)

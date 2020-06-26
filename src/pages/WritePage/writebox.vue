@@ -266,7 +266,7 @@ export default {
         this.$axios.post('/posts/new', {
           title: this.title,
           content: this.userText,
-          bas_id: 1 // TODO
+          bas_id: this.$route.params.basId
         }).then(res => {
           if (res.status === 200) {
             const data = res.data

@@ -124,7 +124,7 @@ export default {
   },
   methods: {
     writepost () {
-      this.$router.push('/writepost')
+      this.$router.push(`/writepost/${this.$route.params.secId}`)
     }
   },
   mounted () {

@@ -6,7 +6,7 @@
     <v-card :elevation="hover?10:4" class="ma-3 mx-auto">
       <v-container fluid class="pa-0">
         <v-row class="px-0">
-          <v-col class="py-0 pr-0">
+          <v-col cols="7" class="py-0 pr-0">
             <v-card class="subtitle-1 px-3 py-1 heada accent--text font-weight-bold"
              flat tile>
               {{title}}

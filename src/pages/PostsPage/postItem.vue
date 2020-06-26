@@ -1,5 +1,10 @@
 <template>
-  <router-link class="link" :to="`/post/${id}`">
+  <router-link
+    class="link"
+    event=""
+    @click.native.prevent="handleClick(forwardRoute)"
+    :to="forwardRoute"
+  >
   <div>
     <v-hover>
     <template v-slot={hover}>
@@ -26,7 +31,7 @@
             </v-card>
           </v-col>
           <v-col class="py-0 pl-5">
-            <span class="right"><v-btn color="colorful2" class="ml-3" @click="writepost">删除</v-btn></span>
+            <span v-if="isAdmin" class="right"><v-btn color="colorful2" class="ml-3" @click="delete_this">删除</v-btn></span>
           </v-col>
         </v-row>
         <v-row class="px-0">
@@ -59,7 +64,14 @@
 export default {
   name: 'postitem',
   data: () => ({
+    isAdmin: false,
+    deleteBtnWorking: false
   }),
+  computed: {
+    forwardRoute () {
+      return `/post/${this.id}`
+    }
+  },
   props: {
     id: {
       type: String,
@@ -93,6 +105,26 @@ export default {
       type: Array,
       required: false
     }
+  },
+  methods: {
+    async delete_this () {
+      this.deleteBtnWorking = true
+      const data = await this.$axios.post('/posts/delete', {
+        id: this.id
+      }).then(res => res.data)
+      if (data.status === 'POST_SUCCESS') {
+        this.deleteBtnWorking = false
+        this.$router.go()
+      }
+    },
+    handleClick (route) {
+      if (!this.deleteBtnWorking) {
+        this.$router.push(route)
+      }
+    }
+  },
+  mounted () {
+    this.isAdmin = (this.$store.getters.userlevel === 1) || (this.name === this.$store.getters.username)
   }
 }
 </script>

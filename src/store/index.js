@@ -19,6 +19,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    username: state => state.userData.username
+    username: state => state.userData.username,
+    userlevel: state => state.userData.level
   }
 })

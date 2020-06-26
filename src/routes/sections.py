@@ -12,7 +12,8 @@ secBp = Blueprint('sections', __name__, url_prefix='/sections')
 @loginRequired
 def sectionDisplay(**checkrst):
     try:
-        return jsonify({'status': POST_SUCCESS, 'records': dg.getSectionInfo().records()})
+        #print(dg.getSectionInfo().records())
+        return jsonify({'status': POST_SUCCESS, 'sections': dg.getSectionInfo().records()})
     except Exception as e:
         traceback.print_exc()
         return jsonify({'status': POST_UNKNOWN})

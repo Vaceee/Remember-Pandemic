@@ -425,7 +425,7 @@ def likeCntIncrease(rep_id):
             WHERE id = %s
         '''
     baseSelect(sql1, (rep_id,))
-
+    print(sql1%(rep_id))
     sql2 = '''
             SELECT rep_likeCnt
             FROM replies

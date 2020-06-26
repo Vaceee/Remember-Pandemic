@@ -20,10 +20,13 @@
           </v-col>
         </v-row>
         <v-row class="px-0">
-          <v-col class="py-0">
+          <v-col cols="10" class="py-0">
             <v-card class="body-2 px-3 pt-0" flat tile>
               {{content}}
             </v-card>
+          </v-col>
+          <v-col class="py-0 pl-5">
+            <span class="right"><v-btn color="colorful2" class="ml-3" @click="writepost">删除</v-btn></span>
           </v-col>
         </v-row>
         <v-row class="px-0">
@@ -107,5 +110,8 @@ export default {
 }
 .author-time-container {
   margin-left: 1em;
+}
+.ml-3{
+  height: 5px;
 }
 </style>

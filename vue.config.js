@@ -6,7 +6,9 @@ module.exports = {
     allowedHosts: [
       'localhost',
       'local.host',
-      'ofcourse.huangduligong.com'
-    ]
+      'ofcourse.huangduligong.com',
+      'http://324y803f50.zicp.vip/'
+    ],
+    disableHostCheck: true
   }
 }

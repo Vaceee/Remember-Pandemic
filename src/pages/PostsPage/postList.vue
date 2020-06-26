@@ -61,7 +61,7 @@ export default {
   data () {
     return {
       section: {
-        sec_name: '魔药学',
+        sec_name: '',
         selectedtags: [
           { tagname: '干货必读', tagcolor: 'pink' }
         ],
@@ -144,9 +144,9 @@ export default {
     this.$axios.get('/sections/fetch')
       .then(response => {
         var sections = response.data.sections
-        for (let sec in sections) {
+        for (let sec of sections) {
           sec = Object(sec)
-          // alert(sec.id) // TODO 不知道为什么读不到sections的内容
+          // alert(sec.id) // 已解决
           if (Number(sec.id) === Number(this.$route.params.secId)) {
             this.section.sec_name = sec.name
           }

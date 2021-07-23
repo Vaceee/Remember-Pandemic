@@ -1,0 +1,525 @@
+{
+  "检查登录状态": {
+    "path": "/login",
+    "method": "GET",
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "usr_name": {
+          "type": "str",
+          "required": false
+        },
+        "usr_gender": {
+          "type": "str",
+          "value": ["F", "M"],
+          "required": false
+        },
+        "usr_no": {
+          "type": "str",
+          "required": false
+        },
+        "usr_userlevel": {
+          "type": "int",
+          "required": false
+        }
+      }
+    },
+    "done": true
+  },
+  "登录": {
+    "path": "/login",
+    "method": "POST",
+    "parameters": {
+      "usr_no": "str",
+      "usr_password": "str"
+    },
+    "return": {
+      "//": "返回与GET方法时保持一致",
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "usr_name": {
+          "type": "str",
+          "required": false
+        },
+        "usr_gender": {
+          "type": "str",
+          "value": ["F", "M"],
+          "required": false
+        },
+        "usr_no": {
+          "type": "str",
+          "required": false
+        },
+        "usr_userlevel": {
+          "type": "int",
+          "required": false
+        }
+      }
+    },
+    "done": true
+  },
+  "登出": {
+    "path": "/logout",
+    "method": "GET",
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "设置密码": {
+    "path": "/profile/setpassword",
+    "method": "POST",
+    "parameters": {
+      "usr_password": "str"
+    },
+    "return": {
+      "status": "str"
+    },
+    "done": true
+  },
+  "分类名": {
+    "path": "/sections/fetch",
+    "method": "GET",
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "sections": {
+          "type": "Arrays",
+          "content": [
+            {
+              "id": "int",
+              "name": "str",
+              "count": "int"
+            }
+          ],
+          "排序方式": {
+            "关键字": "id",
+            "顺序": "升序"
+          }
+        }
+      }
+    },
+    "done": true
+  },
+  "获取帖子": {
+    "path": "/posts/fetch",
+    "method": "GET",
+    "parameters": {
+      "page": "int",
+      "limit": "int",
+      "sec_id": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "posts": {
+          "type": "Arrays",
+          "content": [
+            {
+              "id": "int",
+              "title": "str",
+              "content": "str",
+              "sec_id": "int",
+              "rep_cnt": "int",
+              "click_cnt": "int",
+              "last_time": "int",
+              "usr_name": "str",
+              "on_top": "boolean",
+              "merged_to": [null, "int"]
+            }
+          ],
+          "排序方式": [
+            {
+              "关键字": "置顶",
+              "顺序": ["置顶", "非置顶"]
+            },
+            {
+              "关键字": "最后回复时间",
+              "顺序": "降序"
+            }
+          ]
+        }
+      }
+    },
+    "done": true
+  },
+  "发帖": {
+    "path": "/posts/new",
+    "method": "POST",
+    "parameters": {
+      "bas_id": "int",
+      "title": "str",
+      "content": "str"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "修改帖子": {
+    "path": "posts/edit",
+    "method": "POST",
+    "parameters": {
+      "id": "int",
+      "//": "以下与发帖时相同",
+      "sec_id": "int",
+      "title": "str",
+      "content": "str"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "删除贴子": {
+    "path": "/posts/delete",
+    "method": "POST",
+    "parameters": {
+      "id": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "查看某一具体贴子": {
+    "path": "/posts/fetch-one",
+    "method": "GET",
+    "parameters": {
+      "post_id": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "post": {
+          "type": "Object",
+          "content": {
+            "title": "str",
+            "content": "str",
+            "sec_id": "int",
+            "usr_name": "str",
+            "on_top": "boolean",
+            "merged_to": [null, "int"]
+          }
+        }
+      }
+    },
+    "done": true
+  },
+  "查看回复": {
+    "path": "/replies/fetch",
+    "method": "GET",
+    "parameters": {
+      "post_id": "int",
+      "reply_id": [
+        {
+          "content": -1,
+          "//": "replies of post"
+        }, {
+          "type": "int",
+          "//": "replies of other replies"
+        }
+      ],
+      "page": "int",
+      "limit": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "replies": {
+          "type": "Arrays",
+          "content": [
+            {
+              "id": "int",
+              "usr_name": "str",
+              "content": "str",
+              "time": "str",
+              "like_cnt": "int",
+              "reply": {
+                "type": "Object",
+                "content": {
+                  "first_reply": {
+                    "type": "Object",
+                    "content": {
+                      "id": "int",
+                      "usr_name": "str",
+                      "content": "str",
+                      "time": "str",
+                      "like_cnt": "int"
+                    }
+                  },
+                  "reply_cnt": "int"
+                }
+              }
+            }
+          ],
+          "排序方式": {
+            "关键字": "time",
+            "顺序": "升序"
+          }
+        },
+        "merged": {
+          "type": "Object",
+          "required": false,
+          "content": {
+            "to": "str",
+            "title": "str"
+          }
+        }
+      }
+    },
+    "done": true
+  },
+  "发回复": {
+    "路径": "/replies/new",
+    "method": "POST",
+    "parameters": {
+      "post_id": "int",
+      "content": "str",
+      "rep_to": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "修改回复": {
+    "path": "replies/edit",
+    "method": "POST",
+    "parameters": {
+      "id": "int",
+      "//": "以下与发回复相同",
+      "content": "str"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "删除回复": {
+    "path": "/replies/delete",
+    "method": "POST",
+    "parameters": {
+      "id": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "点赞/取消赞": {
+    "path": "/replies/like",
+    "method": "POST",
+    "parameters": {
+      "method": {
+        "type": "str",
+        "value": ["like", "cancel"],
+        "//": "二者之一"
+      },
+      "rep_id": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": { "like_cnt": "int" }
+    },
+    "done": true
+  },
+  "合并": {
+    "path": "/posts/merge",
+    "method": "POST",
+    "parameters": {
+      "merge_from": "int",
+      "merge_to": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "发送私信": {
+    "path": "/messages/send",
+    "method": "POST",
+    "parameters": {
+      "usr_to": "int",
+      "content": "str"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "获取消息列表": {
+    "path": "/messages/list",
+    "method": "GET",
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "messages": {
+          "type": "Arrays",
+          "content": [
+            {
+              "usr_id": "int",
+              "name": "str",
+              "last_content": "str",
+              "last_time": "str"
+            }
+          ],
+          "排序方式": {
+            "关键字": "最后消息时间",
+            "顺序": "降序"
+          }
+        }
+      }
+    },
+    "done": true
+  },
+  "获取具体对话": {
+    "path": "/messages/chat",
+    "method": "GET",
+    "parameters": {
+      "usr_to": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "messages": {
+          "type": "Arrays",
+          "content": [
+            {
+              "usr_from": "int",
+              "usr_to": "int",
+              "msg_content": "str",
+              "msg_time": "str"
+            }
+          ],
+          "排序方式": {
+            "关键字": "消息时间",
+            "顺序": "升序"
+          }
+        }
+      }
+    },
+    "done": true
+  },
+  "发送通知": {
+    "path": "/notices/send",
+    "method": "POST",
+    "parameters": {
+      "cls_id": "int",
+      "title": "str",
+      "content": "str"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str"
+      }
+    },
+    "done": true
+  },
+  "获取通知列表": {
+    "path": "/notices/list",
+    "method": "GET",
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "messages": {
+          "type": "Arrays",
+          "content": [
+            {
+              "cls_id": "int",
+              "cls_name": "str",
+              "last_title": "str",
+              "last_time": "str"
+            }
+          ],
+          "排序方式": {
+            "关键字": "最后通知时间",
+            "顺序": "降序"
+          }
+        }
+      }
+    },
+    "done": true
+  },
+  "获取具体通知": {
+    "path": "/notices/detail",
+    "method": "GET",
+    "parameters": {
+      "cls_id": "int"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "cls_name": "str",
+        "messages": {
+          "type": "Arrays",
+          "content": [
+            {
+              "from": "str",
+              "ntc_title": "str",
+              "ntc_content": "str",
+              "ntc_time": "str"
+            }
+          ],
+          "排序方式": {
+            "关键字": "通知时间",
+            "顺序": "升序"
+          }
+        }
+      }
+    },
+    "done": true
+  },
+  "上传图像":{
+    "path": "/image/upload",
+    "method": "POST",
+    "parameters":{
+      "img": "str"
+    },
+    "return": {
+      "type": "Object",
+      "content": {
+        "status": "str",
+        "path": "str"
+      }
+    }
+  }
+}

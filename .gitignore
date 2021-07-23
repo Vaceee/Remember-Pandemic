@@ -19,3 +19,14 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+*.vscode
+__pycache__/*
+*.pyc
+/src/__pycache__/*
+/src/db_op/__pycache__/*
+/src/.___init__.py
+/test/__pycache__/*
+/test/.__init__.py
+/test/test.html
+/src/static/*
+todo.md
